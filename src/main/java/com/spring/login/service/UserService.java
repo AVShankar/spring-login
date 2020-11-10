@@ -21,6 +21,7 @@ public class UserService {
         register.setName(name);
         register.setRole(role);
         register.setPassword(encryptedPwd);
+        userRepository.save(register);
         return register;
     }
 
