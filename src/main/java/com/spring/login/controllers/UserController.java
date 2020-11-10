@@ -1,12 +1,14 @@
 package com.spring.login.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.spring.login.models.UserModel;
 import com.spring.login.request.AddUser;
 import com.spring.login.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
 
 @RestController
 public class UserController {
@@ -18,9 +20,10 @@ public class UserController {
     UserService userService;
 
     @PostMapping(value = "/home")
-    public ObjectNode adduser(AddUser addUser)
+    public UserModel adduser(AddUser addUser)
     {
-        userService.createNewUser(addUser.getName(), addUser.getRole(), addUser.getPassword());
-        return 
+        UserModel map = new UserModel();
+        map = userService.createNewUser(addUser.getName(), addUser.getRole(), addUser.getPassword());
+        return map;
     }
 }
